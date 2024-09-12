@@ -45,4 +45,4 @@ export type TMarketListItem = {
   web_link: string;
 };
 
-export type TMarketList = TMarketListItem[];
+export type TMarketList = { data: TMarketListItem[]; status: number };

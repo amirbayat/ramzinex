@@ -28,7 +28,7 @@ export const useGetMarketList = () => {
   //   refetchOnMountOrArgChange: fetch,
   // });
   const { data, error, isLoading } = useGetMarketListQuery();
-  let markets = data;
+  let markets = data?.data ?? [];
   if (search) {
     markets = markets?.filter((market) => market.name.fa.includes(search));
   }

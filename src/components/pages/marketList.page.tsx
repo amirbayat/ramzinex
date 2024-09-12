@@ -20,7 +20,7 @@ const MarketListPage = () => {
     <>
       <Header search={<Search />} />
       <SortMarket />
-      <MarketList markets={markets} />
+      <MarketList markets={markets} isLoading={isLoading} />
     </>
   );
 };
