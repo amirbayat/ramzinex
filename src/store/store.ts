@@ -1,10 +1,13 @@
 import { Action, configureStore, ThunkAction } from "@reduxjs/toolkit";
 // import marketListReducer from "./reducers/market/marketList.reducer";
 import { marketListApi } from "./services/market/marketListApi.service";
+
 export const store = configureStore({
   reducer: {
     [marketListApi.reducerPath]: marketListApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(marketListApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

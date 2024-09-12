@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 const MarketListPage = (props: Props) => {
-  return <div>market list page</div>;
+  return <MarketListPage />;
 };
 
 export default MarketListPage;
