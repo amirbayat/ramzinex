@@ -47,15 +47,26 @@ export const useGetMarketList = () => {
   // }
 
   const searchMarket = (searchValue: string) => {
-    if (searchValue) {
+    if (window.Worker) {
+      const worker = new Worker(
+        new URL("../workers/searchWorker.js", import.meta.url)
+      );
+      worker.postMessage({ markets, searchValue });
+      worker.onmessage = function (e) {
+        setMarketsToShow(e.data);
+        worker.terminate();
+      };
+      worker.onerror = function (error) {
+        console.error("Worker error:", error);
+        worker.terminate();
+      };
+    } else {
       let searchedMarkets = markets.filter(
         (market) =>
           market.name.fa.includes(searchValue) ||
           market.name.en.includes(searchValue)
       );
       setMarketsToShow(searchedMarkets);
-    } else {
-      setMarketsToShow(markets);
     }
   };
   const searchMarketDebounce = Debounce(searchMarket, SEARCH_DEBOUNCE_DELAY, [
