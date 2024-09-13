@@ -7,7 +7,7 @@ type Props = {
 };
 const Text = (props: Props) => {
   const { text, className = "" } = props;
-  return <p className={className}>{text}</p>;
+  return <p className={`${styles["text"]} ${className}`}>{text}</p>;
 };
 
 export default Text;

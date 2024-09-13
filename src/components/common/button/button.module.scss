@@ -1,0 +1,10 @@
+@import "../../../styles/colors.scss";
+
+.button {
+  background-color: $color-white;
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+  border: 1px solid $color-grey-one;
+  border-radius: 8px;
+}
