@@ -34,21 +34,21 @@ const MarketDetail = () => {
           <Text
             text={format(
               t("market.detail.title"),
-              marketDetail.name.fa,
-              marketDetail.base_currency_symbol.en
+              marketDetail?.name?.fa ?? "",
+              marketDetail?.base_currency_symbol?.en ?? ""
             )}
           />
           <InfoRow
             keyText={t("market.detail.en_name")}
-            valueText={marketDetail.name.en}
+            valueText={marketDetail?.name?.en ?? ""}
           />
           <InfoRow
             keyText={t("market.detail.price")}
-            valueText={Humanize.intComma(marketDetail.buy)}
+            valueText={Humanize.intComma(marketDetail?.buy ?? "")}
           />
           <InfoRow
             keyText={t("market.detail.hour_24_changes")}
-            valueText={marketDetail.financial.last24h.change_percent}
+            valueText={marketDetail?.financial?.last24h?.change_percent ?? ""}
           />
         </>
       )}
