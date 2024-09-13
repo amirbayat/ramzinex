@@ -1,5 +1,3 @@
-import React from "react";
-import styles from "./search.module.scss";
 import TextField from "components/common/textField/textField";
 import { useTranslation } from "react-i18next";
 type Props = {

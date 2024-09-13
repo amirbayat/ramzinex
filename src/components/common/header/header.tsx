@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./header.module.scss";
 import Img from "../img/img";
 import { useTranslation } from "react-i18next";
 import Text from "../text/text";
+import { DarkModeContext } from "hooks/useDarkMode";
 
 type Props = {
   search: React.ReactNode;
@@ -10,7 +11,7 @@ type Props = {
 const Header = (props: Props) => {
   const { search } = props;
   const { t, i18n } = useTranslation();
-  const [isDarkMode, setIsDarkMode] = useState(false);
+  const { isDarkMode, setIsDarkMode } = useContext(DarkModeContext);
 
   function changeLanguage(lang: "en" | "fa") {
     i18n.changeLanguage(lang);
@@ -18,19 +19,13 @@ const Header = (props: Props) => {
 
   function toggleDarkMode() {
     setIsDarkMode(!isDarkMode);
-    localStorage.setItem("isDarkMode", String(1));
   }
 
   useEffect(() => {
-    let _isDarkMode = localStorage.getItem("isDarkMode");
-    if (_isDarkMode == "1") {
+    if (isDarkMode) {
       document.body.classList.add("dark-mode");
     } else {
-      if (isDarkMode) {
-        document.body.classList.add("dark-mode");
-      } else {
-        document.body.classList.remove("dark-mode");
-      }
+      document.body.classList.remove("dark-mode");
     }
   }, [isDarkMode]);
 

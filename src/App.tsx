@@ -7,18 +7,22 @@ import "./App.scss";
 
 import MarketListPage from "./routes";
 import MarketDetailPage from "./routes/market/marketDetail";
+import { DarkModeContext, useDarkMode } from "hooks/useDarkMode";
 
 function App() {
+  const { isDarkMode, setIsDarkMode } = useDarkMode();
   return (
     <div className="App">
       <Provider store={store}>
-        <Router>
-          <Routes>
-            <Route path="/" element={<MarketListPage />} />
-            <Route path="/market" element={<MarketListPage />} />
-            <Route path="/market/:marketId" element={<MarketDetailPage />} />
-          </Routes>
-        </Router>
+        <DarkModeContext.Provider value={{ isDarkMode, setIsDarkMode }}>
+          <Router>
+            <Routes>
+              <Route path="/" element={<MarketListPage />} />
+              <Route path="/market" element={<MarketListPage />} />
+              <Route path="/market/:marketId" element={<MarketDetailPage />} />
+            </Routes>
+          </Router>
+        </DarkModeContext.Provider>
       </Provider>
     </div>
   );

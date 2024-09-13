@@ -1,8 +1,5 @@
-import React from "react";
-
 import MarketListPageView from "../components/pages/marketList.page";
-type Props = {};
-const MarketListPage = (props: Props) => {
+const MarketListPage = () => {
   return <MarketListPageView />;
 };
 
