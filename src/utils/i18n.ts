@@ -7,6 +7,8 @@ const resources = {
       common: {
         loading: "loading...",
         back: "back",
+        en: "en",
+        fa: "fa",
       },
       market: {
         list: {
@@ -38,6 +40,8 @@ const resources = {
       common: {
         loading: "در حال بارگزاری...",
         back: "بازگشت",
+        en: "en",
+        fa: "فا",
       },
       market: {
         list: {

@@ -28,6 +28,7 @@ const MarketListPage = () => {
         setSortItem={setSortItem}
         setSortType={setSortType}
       />
+
       <MarketList markets={markets} isLoading={isLoading} />
     </Layout>
   );
