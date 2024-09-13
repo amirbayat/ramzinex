@@ -3,26 +3,6 @@ import { useGetMarketListQuery } from "../store/services/market/marketListApi.se
 import { TMarketListItem, TSortItem, TSortType } from "types/market";
 import { Debounce } from "utils/debounce";
 
-// type TMarketListArgs = {
-//   sort?: {
-//     sortItem?: "name" | "price" | null;
-//     sortType?: "asc" | "desc" | null;
-//   };
-//   search?: string | null;
-//   fetch?: boolean;
-// };
-
-// const defaultArgs: TMarketListArgs = {
-//   sort: {
-//     sortItem: null,
-//     sortType: null,
-//   },
-//   search: null,
-//   fetch: true,
-// };
-
-// export const useGetMarketList = (args: TMarketListArgs = defaultArgs) => {
-
 const SEARCH_DEBOUNCE_DELAY = 500;
 export const useGetMarketList = () => {
   const { data, error, isLoading } = useGetMarketListQuery();
@@ -36,18 +16,11 @@ export const useGetMarketList = () => {
   );
 
   const searchEffectFirstRun = useRef(true);
-  // const { data, error, isLoading } = useGetMarketListQuery(undefined, {
-  //   refetchOnMountOrArgChange: fetch,
-  // });
 
   useEffect(() => {
     setMarkets(JSON.parse(JSON.stringify(data?.data ?? [])));
     setMarketsToShow(JSON.parse(JSON.stringify(data?.data ?? [])));
   }, [JSON.stringify(data?.data ?? [])]);
-
-  // if (search) {
-  //   markets = markets?.filter((market) => market.name.fa.includes(search));
-  // }
 
   const searchMarket = (searchValue: string) => {
     if (window.Worker) {
