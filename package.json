@@ -54,6 +54,7 @@
   "devDependencies": {
     "@types/humanize-plus": "^1.8.2",
     "@types/react-window": "^1.8.8",
-    "@types/string-format": "^2.0.3"
+    "@types/string-format": "^2.0.3",
+    "workbox-webpack-plugin": "^7.1.0"
   }
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import { useGetMarketList } from "../../hooks/marketList.hook";
 import Search from "../market/search/search";
 import Header from "../common/header/header";
