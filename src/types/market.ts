@@ -45,4 +45,7 @@ export type TMarketListItem = {
   web_link: string;
 };
 
-export type TMarketList = TMarketListItem[];
+export type TMarketList = { data: TMarketListItem[]; status: number };
+
+export type TSortItem = "name" | "price" | null;
+export type TSortType = "asc" | "desc" | null;

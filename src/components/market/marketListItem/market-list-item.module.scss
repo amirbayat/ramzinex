@@ -1,0 +1,35 @@
+@import "../../../styles/colors.scss";
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row-reverse;
+  padding: 8px 0px;
+  width: 100%;
+  border-bottom: 1px solid $color-grey-one;
+  .logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: contain;
+    margin-left: 12px;
+  }
+
+  .name {
+    margin-left: auto;
+    direction: rtl;
+    max-width: calc(100% - 28px - 12px - 4px - 100px - 26px - 8px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .currency {
+    margin-left: 4px;
+  }
+
+  .price {
+    width: 100px;
+  }
+}

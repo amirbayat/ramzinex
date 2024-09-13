@@ -1,0 +1,20 @@
+.sort {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  flex-direction: row-reverse;
+  padding: 4px 24px;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    justify-content: flex-start;
+    flex-direction: row-reverse;
+
+    &__text {
+      margin-left: 8px;
+    }
+  }
+}

@@ -6,7 +6,7 @@ export const marketListApi = createApi({
   reducerPath: "marketList",
   baseQuery: fetchBaseQuery({ baseUrl: Urls.baseUrl }),
   endpoints: (builder) => ({
-    getMarketList: builder.query<TMarketList, unknown>({
+    getMarketList: builder.query<TMarketList, void>({
       query: () => Urls.getMarketList,
     }),
   }),

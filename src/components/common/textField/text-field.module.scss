@@ -1,0 +1,12 @@
+@import "../../../styles/colors.scss";
+
+.input {
+  width: 100%;
+  padding: 8px 32px 8px 8px;
+  border: 1px solid $color-grey-two;
+  border-radius: 8px;
+  direction: rtl;
+  &:focus {
+    outline: none;
+  }
+}
