@@ -1,6 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGetMarketListQuery } from "../store/services/market/marketListApi.service";
 import { TMarketListItem, TSortItem, TSortType } from "types/market";
+import { Debounce } from "utils/debounce";
 
 // type TMarketListArgs = {
 //   sort?: {
@@ -21,11 +22,16 @@ import { TMarketListItem, TSortItem, TSortType } from "types/market";
 // };
 
 // export const useGetMarketList = (args: TMarketListArgs = defaultArgs) => {
+
+const SEARCH_DEBOUNCE_DELAY = 500;
 export const useGetMarketList = () => {
   const [sortItem, setSortItem] = useState<TSortItem>(null);
   const [sortType, setSortType] = useState<TSortType>(null);
   const [search, setSearch] = useState("");
   const [markets, setMarkets] = useState<TMarketListItem[]>([]);
+  const [marketsToShow, setMarketsToShow] = useState<TMarketListItem[]>([]);
+
+  const searchEffectFirstRun = useRef(true);
   // const { data, error, isLoading } = useGetMarketListQuery(undefined, {
   //   refetchOnMountOrArgChange: fetch,
   // });
@@ -33,11 +39,37 @@ export const useGetMarketList = () => {
 
   useEffect(() => {
     setMarkets(JSON.parse(JSON.stringify(data?.data ?? [])));
+    setMarketsToShow(JSON.parse(JSON.stringify(data?.data ?? [])));
   }, [JSON.stringify(data?.data ?? [])]);
 
   // if (search) {
   //   markets = markets?.filter((market) => market.name.fa.includes(search));
   // }
+
+  const searchMarket = (searchValue: string) => {
+    if (searchValue) {
+      let searchedMarkets = markets.filter(
+        (market) =>
+          market.name.fa.includes(searchValue) ||
+          market.name.en.includes(searchValue)
+      );
+      setMarketsToShow(searchedMarkets);
+    } else {
+      setMarketsToShow(markets);
+    }
+  };
+  const searchMarketDebounce = Debounce(searchMarket, SEARCH_DEBOUNCE_DELAY, [
+    JSON.stringify(markets),
+  ]);
+
+  useEffect(() => {
+    if (search) {
+      searchMarketDebounce(search);
+      searchEffectFirstRun.current = false;
+    } else if (search == "" && !searchEffectFirstRun.current) {
+      setMarketsToShow(markets);
+    }
+  }, [search]);
 
   useEffect(() => {
     if (sortItem) {
@@ -47,7 +79,7 @@ export const useGetMarketList = () => {
         );
         worker.postMessage({ markets, sortItem, sortType });
         worker.onmessage = function (e) {
-          setMarkets(e.data);
+          setMarketsToShow(e.data);
           worker.terminate();
         };
         worker.onerror = function (error) {
@@ -77,13 +109,13 @@ export const useGetMarketList = () => {
             }
           });
         }
-        setMarkets(sortedMarkets);
+        setMarketsToShow(sortedMarkets);
       }
     }
   }, [sortItem, sortType]);
 
   return {
-    markets,
+    markets: marketsToShow,
     isLoading,
     sortItem,
     setSortItem,

@@ -1,7 +1,7 @@
 import React from "react";
 import { useGetMarketList } from "../../hooks/marketList.hook";
-import Search from "../market/search";
-import Header from "../common/header";
+import Search from "../market/search/search";
+import Header from "../common/header/header";
 import SortMarket from "../market/sortMarket/sortMarket";
 import MarketList from "../market/marketList";
 import Layout from "components/common/layout/layout";
@@ -19,7 +19,9 @@ const MarketListPage = () => {
   } = useGetMarketList();
   return (
     <Layout>
-      <Header search={<Search />} />
+      <Header
+        search={<Search searchValue={search} changeSearchValue={setSearch} />}
+      />
       <SortMarket
         sortItem={sortItem}
         sortType={sortType}

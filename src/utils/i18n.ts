@@ -13,7 +13,11 @@ const resources = {
             name: "{} ({})",
             currency: "IRR",
           },
-          header: {},
+          header: {
+            search: {
+              placeholder: "Search market",
+            },
+          },
           sort: {
             name: "name",
             latest_price: "price",
@@ -33,7 +37,11 @@ const resources = {
             name: "{} ({})",
             currency: "IRR",
           },
-          header: {},
+          header: {
+            search: {
+              placeholder: "جستجو بازار",
+            },
+          },
           sort: {
             name: "نام",
             latest_price: "آخرین قیمت",
