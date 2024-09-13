@@ -1,5 +1,4 @@
-import React from "react";
-import { TMarketList, TMarketListItem } from "../../types/market";
+import { TMarketListItem } from "../../types/market";
 import Text from "../common/text/text";
 import { useTranslation } from "react-i18next";
 import MarketListItem from "./marketListItem/marketListItem";
@@ -22,8 +21,9 @@ const MarketList = (props: Props) => {
             key={market.name.en}
             logo={market.logo}
             nameFa={market.name.fa}
-            nameEn={market.name.en}
+            symbol={market.base_currency_symbol.en}
             buy={market.buy}
+            id={market.pair_id}
           />
         ))}
     </>

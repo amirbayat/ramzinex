@@ -1,7 +1,6 @@
-import React from "react";
-type Props = {};
-const MarketDetailPage = (props: Props) => {
-  return <div>market detail</div>;
+import MarketDetailPageView from "components/pages/marketDetail.page";
+const MarketDetailPage = () => {
+  return <MarketDetailPageView />;
 };
 
 export default MarketDetailPage;

@@ -6,6 +6,7 @@ const resources = {
     translation: {
       common: {
         loading: "loading...",
+        back: "back",
       },
       market: {
         list: {
@@ -23,6 +24,12 @@ const resources = {
             latest_price: "price",
           },
         },
+        detail: {
+          title: "{} ({})",
+          en_name: "english name",
+          price: "price",
+          hour_24_changes: "24 hour changes",
+        },
       },
     },
   },
@@ -30,6 +37,7 @@ const resources = {
     translation: {
       common: {
         loading: "در حال بارگزاری...",
+        back: "بازگشت",
       },
       market: {
         list: {
@@ -46,6 +54,12 @@ const resources = {
             name: "نام",
             latest_price: "آخرین قیمت",
           },
+        },
+        detail: {
+          title: "{} ({})",
+          en_name: "نام انگلیسی",
+          price: "قیمت",
+          hour_24_changes: "تغییرات ۲۴ ساعته",
         },
       },
     },

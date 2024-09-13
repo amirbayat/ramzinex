@@ -25,17 +25,20 @@ import { Debounce } from "utils/debounce";
 
 const SEARCH_DEBOUNCE_DELAY = 500;
 export const useGetMarketList = () => {
+  const { data, error, isLoading } = useGetMarketListQuery();
+
   const [sortItem, setSortItem] = useState<TSortItem>(null);
   const [sortType, setSortType] = useState<TSortType>(null);
   const [search, setSearch] = useState("");
-  const [markets, setMarkets] = useState<TMarketListItem[]>([]);
-  const [marketsToShow, setMarketsToShow] = useState<TMarketListItem[]>([]);
+  const [markets, setMarkets] = useState<TMarketListItem[]>(data?.data ?? []);
+  const [marketsToShow, setMarketsToShow] = useState<TMarketListItem[]>(
+    data?.data ?? []
+  );
 
   const searchEffectFirstRun = useRef(true);
   // const { data, error, isLoading } = useGetMarketListQuery(undefined, {
   //   refetchOnMountOrArgChange: fetch,
   // });
-  const { data, error, isLoading } = useGetMarketListQuery();
 
   useEffect(() => {
     setMarkets(JSON.parse(JSON.stringify(data?.data ?? [])));
