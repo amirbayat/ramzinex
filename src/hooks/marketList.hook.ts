@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useGetMarketListQuery } from "../store/services/market/marketListApi.service";
+import { TMarketListItem, TSortItem, TSortType } from "types/market";
 
 // type TMarketListArgs = {
 //   sort?: {
@@ -21,17 +22,18 @@ import { useGetMarketListQuery } from "../store/services/market/marketListApi.se
 
 // export const useGetMarketList = (args: TMarketListArgs = defaultArgs) => {
 export const useGetMarketList = () => {
-  const [sortItem, setSortItem] = useState<"name" | "price" | null>(null);
-  const [sortType, setSortType] = useState<"asc" | "desc" | null>(null);
+  const [sortItem, setSortItem] = useState<TSortItem>(null);
+  const [sortType, setSortType] = useState<TSortType>(null);
   const [search, setSearch] = useState("");
   // const { data, error, isLoading } = useGetMarketListQuery(undefined, {
   //   refetchOnMountOrArgChange: fetch,
   // });
   const { data, error, isLoading } = useGetMarketListQuery();
-  let markets = data?.data ?? [];
+  let markets: TMarketListItem[] = JSON.parse(JSON.stringify(data?.data ?? []));
   if (search) {
     markets = markets?.filter((market) => market.name.fa.includes(search));
   }
+
   if (sortItem) {
     if (sortItem == "name") {
       markets = markets?.sort((a, b) => {
@@ -47,7 +49,7 @@ export const useGetMarketList = () => {
       markets = markets?.sort((a, b) => {
         if (a.buy < b.buy) {
           return sortType == "asc" ? -1 : 1;
-        } else if (a.name.en > b.name.en) {
+        } else if (a.buy > b.buy) {
           return sortType == "asc" ? 1 : -1;
         } else {
           return 0;
@@ -55,6 +57,7 @@ export const useGetMarketList = () => {
       });
     }
   }
+
   return {
     markets,
     isLoading,

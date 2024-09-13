@@ -19,6 +19,7 @@ const MarketList = (props: Props) => {
       {Array.isArray(markets) &&
         markets.map((market) => (
           <MarketListItem
+            key={market.name.en}
             logo={market.logo}
             nameFa={market.name.fa}
             nameEn={market.name.en}

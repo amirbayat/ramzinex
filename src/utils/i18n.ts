@@ -13,6 +13,11 @@ const resources = {
             name: "{} ({})",
             currency: "IRR",
           },
+          header: {},
+          sort: {
+            name: "name",
+            latest_price: "price",
+          },
         },
       },
     },
@@ -28,6 +33,11 @@ const resources = {
             name: "{} ({})",
             currency: "IRR",
           },
+          header: {},
+          sort: {
+            name: "نام",
+            latest_price: "آخرین قیمت",
+          },
         },
       },
     },
@@ -36,7 +46,7 @@ const resources = {
 
 i18n.use(initReactI18next).init({
   resources,
-  lng: "en",
+  lng: "fa",
   interpolation: {
     escapeValue: false, // react already safes from xss
   },

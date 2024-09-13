@@ -2,8 +2,9 @@ import React from "react";
 import { useGetMarketList } from "../../hooks/marketList.hook";
 import Search from "../market/search";
 import Header from "../common/header";
-import SortMarket from "../market/sortMarket";
+import SortMarket from "../market/sortMarket/sortMarket";
 import MarketList from "../market/marketList";
+import Layout from "components/common/layout/layout";
 
 const MarketListPage = () => {
   const {
@@ -17,11 +18,16 @@ const MarketListPage = () => {
     setSearch,
   } = useGetMarketList();
   return (
-    <>
+    <Layout>
       <Header search={<Search />} />
-      <SortMarket />
+      <SortMarket
+        sortItem={sortItem}
+        sortType={sortType}
+        setSortItem={setSortItem}
+        setSortType={setSortType}
+      />
       <MarketList markets={markets} isLoading={isLoading} />
-    </>
+    </Layout>
   );
 };
 
