@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./header.module.scss";
 import Img from "../img/img";
 import { useTranslation } from "react-i18next";
@@ -10,10 +10,30 @@ type Props = {
 const Header = (props: Props) => {
   const { search } = props;
   const { t, i18n } = useTranslation();
+  const [isDarkMode, setIsDarkMode] = useState(false);
 
   function changeLanguage(lang: "en" | "fa") {
     i18n.changeLanguage(lang);
   }
+
+  function toggleDarkMode() {
+    setIsDarkMode(!isDarkMode);
+    localStorage.setItem("isDarkMode", String(1));
+  }
+
+  useEffect(() => {
+    let _isDarkMode = localStorage.getItem("isDarkMode");
+    if (_isDarkMode == "1") {
+      document.body.classList.add("dark-mode");
+    } else {
+      if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+      } else {
+        document.body.classList.remove("dark-mode");
+      }
+    }
+  }, [isDarkMode]);
+
   return (
     <div className={styles["header"]}>
       <div className={styles["header__search"]}>{search}</div>
@@ -28,7 +48,7 @@ const Header = (props: Props) => {
         onClick={() => changeLanguage("fa")}
       />
 
-      <div className={styles["header__dark-mode"]}>
+      <div className={styles["header__dark-mode"]} onClick={toggleDarkMode}>
         <Img src="/images/dark_mode.png" alt="dark_mode" />
       </div>
     </div>

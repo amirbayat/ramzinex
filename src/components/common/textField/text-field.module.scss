@@ -6,6 +6,11 @@
   border: 1px solid $color-grey-two;
   border-radius: 8px;
   direction: rtl;
+  background-color: var(--backgroun-color);
+  color: var(--text-color);
+  &::placeholder {
+    color: var(--text-color);
+  }
   &:focus {
     outline: none;
   }
